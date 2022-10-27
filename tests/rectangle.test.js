@@ -13,4 +13,5 @@ test('Rectangle', () => {
   //
   const r0 = new Rectangle(-1, 4);
   expect(r0.isValid()).toBe(false);
+  expect(r0.area()).toBe(0);
 });

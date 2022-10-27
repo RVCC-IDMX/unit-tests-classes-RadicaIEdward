@@ -16,8 +16,10 @@
  */
 
 /**
+ * Theremometer class
  * @class Thermometer
- *
+ * @constructor Thermometor constructor function
+ * @param {number} celsius
  * An instance of this class is a temperature that
  * is represented in celsius units (store it in a private class field)
  * The other unit values are calculated from the
@@ -26,14 +28,16 @@
  *
  */
 class Thermometer {
-  // write your code here for the private class field called celsius
+  #celsius;
+
+  #kelvin;
 
   /**
    * @constructor
    * @param {number} celsius
    */
   constructor(celsius) {
-    // write your code here
+    this.#celsius = celsius;
   }
 
   /*  -------- celsius -------------------*/
@@ -44,7 +48,7 @@ class Thermometer {
    * @description - returns the celsius temperature
    * */
   get celsius() {
-    // write your code here
+    return this.#celsius;
   }
 
   /**
@@ -54,7 +58,7 @@ class Thermometer {
    * @description - sets the celsius temperature
    */
   set celsius(tempCelsius) {
-    // write your code here
+    this.#celsius = tempCelsius;
   }
 
   /*  -------- kelvin -------------------*/
@@ -65,7 +69,7 @@ class Thermometer {
    * @description - returns the kelvin temperature
    */
   get kelvin() {
-    // write your code here
+    return this.#celsius + 273.15;
   }
 
   /**
@@ -75,7 +79,7 @@ class Thermometer {
    * @description - sets the kelvin temperature
    */
   set kelvin(tempKelvin) {
-    // write your code here
+    this.#celsius -= this.kelvin + tempKelvin;
   }
 
   /*  -------- fahrenheit -------------------*/
@@ -86,7 +90,7 @@ class Thermometer {
    * @description - returns the fahrenheit temperature
    */
   get fahrenheit() {
-    // write your code here
+    return (this.#celsius * 1.8) + 32;
   }
 
   /**
@@ -96,7 +100,7 @@ class Thermometer {
    * @description - sets the fahrenheit temperature
    */
   set fahrenheit(tempFahrenheit) {
-    // write your code here
+    this.#celsius = ((tempFahrenheit - 32) / 1.8);
   }
 
   /**
@@ -114,7 +118,14 @@ class Thermometer {
    *
    */
   toString(unit) {
-    // write your code here
+    if (unit !== undefined) {
+      if (unit.toUpperCase() === 'K') {
+        return `${this.kelvin}${unit}`;
+      } if (unit.toUpperCase() === 'F') {
+        return `${this.fahrenheit}\u00B0${unit}`;
+      }
+    }
+    return `${this.celsius}\u00B0C`;
   }
 }
 
